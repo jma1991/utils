@@ -29,6 +29,10 @@ bash "${INSTALLER}" -b
 echo "Initializing conda..."
 eval "$($HOME/miniforge3/bin/conda shell.bash hook)"
 
+# Initialize conda for future shell sessions.
+echo "Persistently initializing conda for future shells..."
+$HOME/miniforge3/bin/conda init bash
+
 # Add the 'bioconda' channel.
 echo "Adding 'bioconda' channel..."
 conda config --add channels bioconda
@@ -38,3 +42,4 @@ echo "Adding 'nodefaults' channel..."
 conda config --add channels nodefaults
 
 echo "Miniforge installation and conda channel configuration completed successfully!"
+echo "👉 Restart your shell or run 'source ~/.bashrc' to enable 'conda activate'."
