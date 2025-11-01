@@ -1,2 +1,0 @@
-R_LIBS=/usr/local/lib/R/host-site-library:/usr/local/lib/R/site-library:/usr/local/lib/R/library
-R_LIBS_USER=/usr/local/lib/R/host-site-library
