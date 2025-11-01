@@ -27,6 +27,13 @@ endif
 # Change recipe prefix from tab to ">"
 .RECIPEPREFIX = >
 
+# ------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------
+
+# Define the Bioconductor release here
+BIOC_RELEASE := RELEASE_3_21
+
 # Declare non-file targets
 .PHONY : usage bioc-run bioc-rstudio bioc-bash bioc-r
 
@@ -42,28 +49,27 @@ usage:
 
 # ------------------------------------------------------------
 # Targets to run Bioconductor Docker container in various modes
-# Each uses the helper script code/bioc-run.sh
+# Each uses the helper script bioc-run.sh
 # ------------------------------------------------------------
 
 # Run container normally (default entrypoint)
-bioc-run : code/bioc-run.sh
-> bash $^ -v RELEASE_3_21 -d $(CURDIR)
+bioc-run : bioc-run.sh
+> bash $^ -v $(BIOC_RELEASE) -d $(CURDIR)
 
 # Run container with RStudio server
-bioc-rstudio : code/bioc-run.sh
-> bash $^ -v RELEASE_3_21 -e rstudio -d $(CURDIR)
+bioc-rstudio : bioc-run.sh
+> bash $^ -v $(BIOC_RELEASE)§ -e rstudio -d $(CURDIR)
 
 # Run container with interactive bash shell
-bioc-bash : code/bioc-run.sh
-> bash $^ -v RELEASE_3_21 -e bash -d $(CURDIR)
+bioc-bash : bioc-run.sh
+> bash $^ -v $(BIOC_RELEASE) -e bash -d $(CURDIR)
 
 # Run container with R console
-bioc-r : code/bioc-run.sh
-> bash $^ -v RELEASE_3_21 -e R -d $(CURDIR)
+bioc-r : bioc-run.sh
+> bash $^ -v $(BIOC_RELEASE) -e R -d $(CURDIR)
 
 # ------------------------------------------------------------
 # Rule to download the helper script if it doesn't exist
 # ------------------------------------------------------------
-code/bioc-run.sh :
-> mkdir -p code
+bioc-run.sh :
 > wget -O $@ https://raw.githubusercontent.com/Bioconductor/bioc-run/refs/heads/devel/bioc-run
