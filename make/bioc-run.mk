@@ -58,7 +58,7 @@ bioc-run : bioc-run.sh
 
 # Run container with RStudio server
 bioc-rstudio : bioc-run.sh
-> bash $^ -v $(BIOC_RELEASE)§ -e rstudio -d $(CURDIR)
+> bash $^ -v $(BIOC_RELEASE) -e rstudio -d $(CURDIR)
 
 # Run container with interactive bash shell
 bioc-bash : bioc-run.sh
