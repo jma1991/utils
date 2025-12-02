@@ -57,19 +57,19 @@ usage:
 
 # Run container normally (default entrypoint)
 bioc-run : bioc-run.sh
-> bash $^ -v $(BIOC_RELEASE) -d $(CURDIR)
+> bash $^ -v $(BIOC_RELEASE) -p $(PORT) -d $(CURDIR)
 
 # Run container with RStudio server
 bioc-rstudio : bioc-run.sh
-> bash $^ -v $(BIOC_RELEASE) -e rstudio -d $(CURDIR)
+> bash $^ -v $(BIOC_RELEASE) -e rstudio -p $(PORT) -d $(CURDIR)
 
 # Run container with interactive bash shell
 bioc-bash : bioc-run.sh
-> bash $^ -v $(BIOC_RELEASE) -e bash -d $(CURDIR)
+> bash $^ -v $(BIOC_RELEASE) -e bash -p $(PORT) -d $(CURDIR)
 
 # Run container with R console
 bioc-r : bioc-run.sh
-> bash $^ -v $(BIOC_RELEASE) -e R -d $(CURDIR)
+> bash $^ -v $(BIOC_RELEASE) -e R -p $(PORT) -d $(CURDIR)
 
 # ------------------------------------------------------------
 # Rule to download the helper script if it doesn't exist
