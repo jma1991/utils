@@ -34,6 +34,9 @@ endif
 # Define the Bioconductor release here
 BIOC_RELEASE := RELEASE_3_21
 
+# Define the port here
+PORT := 8787
+
 # Declare non-file targets
 .PHONY : usage bioc-run bioc-rstudio bioc-bash bioc-r
 
